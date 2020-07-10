@@ -20,7 +20,7 @@ yargs.command({
       describe: 'Timestamp'
     }
   },
-  handler: function (argv) {
+  handler(argv) {
     let timeStamp = Date.now();
     console.log(chalk.blue('Adding new note'));
     console.log('Title: ' + argv.title);
@@ -39,7 +39,7 @@ yargs.command({
       type: 'string'
     }
   },
-  handler: function (argv) {
+  handler(argv) {
     console.log(chalk.red('Removing note'));
     notes.removeNote(argv.title);
   }
@@ -48,7 +48,7 @@ yargs.command({
 yargs.command({
   command: 'index',
   describe: 'List notes',
-  handler: function () {
+  handler() {
     console.log(chalk.blue('Current notes:'));
   }
 });
@@ -56,7 +56,7 @@ yargs.command({
 yargs.command({
   command: 'read',
   describe: 'Read note',
-  handler: function () {
+  handler() {
     console.log(chalk.blue('Read note:'));
   }
 });

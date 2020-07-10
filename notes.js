@@ -1,15 +1,13 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-const getNotes = function () {
+const getNotes = () => {
   return 'Your notes...'
 }
 
-const addNote = function (title, body) {
+const addNote = (title, body) => {
   const notes = loadNotes();
-  const duplicates = notes.filter(function (note) {
-    return note.title === title
-  });
+  const duplicates = notes.filter((note) => note.title === title);
 
   const timeStamp = Date.now();
   const timeString = new Date(timeStamp);
@@ -28,7 +26,7 @@ const addNote = function (title, body) {
   saveNotes(notes);
 }
 
-const loadNotes = function () {
+const loadNotes = () => {
   try {
     const dataJSON = fs.readFileSync('./notes.json').toString();
     return JSON.parse(dataJSON);
@@ -37,17 +35,15 @@ const loadNotes = function () {
   }
 }
 
-const saveNotes = function (notes) {
+const saveNotes = (notes) => {
   const dataJSON = JSON.stringify(notes)
   fs.writeFileSync('notes.json', dataJSON)
 }
 
-const removeNote = function (title) {
+const removeNote = (title) => {
   console.log('Removing: ' + title);
   const notes = loadNotes();
-  const notesToKeep = notes.filter(function (note) {
-    return note.title !== title
-  });
+  const notesToKeep = notes.filter((note) => note.title !== title);
   if (notesToKeep.length === notes.length) {
     console.log(chalk.red.inverse('No note found!'));
   } else {
