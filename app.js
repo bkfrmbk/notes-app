@@ -49,15 +49,24 @@ yargs.command({
   command: 'index',
   describe: 'List notes',
   handler() {
-    console.log(chalk.blue('Current notes:'));
+    console.log(chalk.blue.inverse('Current notes:'));
+    notes.listNotes();
   }
 });
 
 yargs.command({
   command: 'read',
-  describe: 'Read note',
-  handler() {
-    console.log(chalk.blue('Read note:'));
+  describe: 'Read a note',
+  builder: {
+    title: {
+      describe: 'Note Title',
+      demandOption: true,
+      type: 'string'
+    }
+  },
+  handler(argv) {
+    console.log(chalk.blue.inverse('Here it is:'));
+    notes.readNote(argv.title);
   }
 });
 

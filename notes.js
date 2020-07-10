@@ -50,12 +50,27 @@ const removeNote = (title) => {
     console.log(chalk.green.inverse('Note removed!'));
     saveNotes(notesToKeep);
   }
+}
 
+const listNotes = () => {
+  const notes = loadNotes()
+  notes.forEach((note) => {
+    console.log(chalk.red('Title: ' + note.title));
+    console.log(chalk.red('Content: ' + note.body));
+  })
+}
+
+const readNote = (title) => {
+  const notes = loadNotes();
+  const note = notes.filter(note => note.title == title)
+  console.log(note);
 }
 
 module.exports = {
   getNotes: getNotes,
   addNote: addNote,
-  removeNote: removeNote
+  removeNote: removeNote,
+  listNotes: listNotes,
+  readNote: readNote
 }
 
